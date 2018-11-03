@@ -15,6 +15,12 @@ class App extends Component {
     numberPool: range(0, 10),
     playerAnswer: []
   };
+
+  selectNumberFromPool = number =>
+    this.setState(pState => ({
+      playerAnswer: pState.playerAnswer.concat(number)
+    }));
+
   render() {
     return (
       <div className="container">
@@ -36,7 +42,10 @@ class App extends Component {
         </div>
         <div className="row text-center">
           <div className="col-md-12 shadow-lg rounded d-flex p-2 align-items-center justify-content-center">
-            <NumberPool numberPool={this.state.numberPool} />
+            <NumberPool
+              numberPool={this.state.numberPool}
+              onClick={this.selectNumberFromPool}
+            />
           </div>
         </div>
       </div>

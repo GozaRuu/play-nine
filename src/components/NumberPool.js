@@ -1,9 +1,11 @@
 import React from "react";
 
-const NumberPool = ({ numberPool }) => (
+const NumberPool = ({ numberPool, onClick }) => (
   <div>
     {numberPool.map(number => (
-      <span key={number}>{number}</span>
+      <span key={number} onClick={() => onClick(number)}>
+        {number}
+      </span>
     ))}
   </div>
 );
