@@ -39,7 +39,12 @@ class App extends Component {
       }));
       return;
     }
-    if (this.state.playerAnswer.length === 0) return;
+    if (this.state.playerAnswer.length === 0) {
+      this.setState(pState => ({
+        stars: range(0, getRandomNumber())
+      }));
+      return;
+    }
     if (
       this.state.stars.length ===
       this.state.playerAnswer.reduce((x, y) => x + y, 0)
