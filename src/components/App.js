@@ -31,9 +31,9 @@ class App extends Component {
       )
     }));
 
-  veryfiyAnswer = () => {
+  advanceRound = () => {
     if (this.state.playerAnswer.length === 0) return;
-    if (this.state.buttonState) {
+    if (this.state.buttonState === "correct") {
       this.setState(pState => ({
         stars: range(0, getRandomNumber()),
         playerAnswer: [],
@@ -70,7 +70,7 @@ class App extends Component {
           </div>
           <div className="col-md-4 my-4 d-flex p-2 align-items-center justify-content-center">
             <PlayerLockAnswer
-              onClick={this.veryfiyAnswer}
+              onClick={this.advanceRound}
               state={this.state.buttonState}
             />
           </div>
