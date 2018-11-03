@@ -12,7 +12,6 @@ const getRandomNumber = () => Math.floor(Math.random() * 9) + 1;
 class App extends Component {
   state = {
     stars: range(0, getRandomNumber()),
-    numberPool: range(1, 10),
     playerAnswer: [],
     buttonState: ""
   };
