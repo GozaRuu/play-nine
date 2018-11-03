@@ -5,7 +5,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 const Stars = ({ stars }) => (
   <div>
     {stars.map(number => (
-      <span key={number} className="shadow">
+      <span key={number}>
         <FontAwesomeIcon icon={faStar} />
       </span>
     ))}
