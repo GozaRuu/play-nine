@@ -93,9 +93,9 @@ class App extends Component {
             <h2 className="game-title game-title-small">
               thank you for playing
             </h2>
-            <p className="small text-dark footer">
-              © <a href="https://github.com/GozaRuu">GozaRuu.</a> 2018 All
-              rights reserved.
+            <p className="small text-dark">
+              {" "}
+              © Js Joe. Kais Sghari. 2018 All rights reserved.
             </p>
           </div>
         </div>
