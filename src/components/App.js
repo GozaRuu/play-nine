@@ -13,6 +13,7 @@ class App extends Component {
   state = {
     stars: range(0, getRandomNumber()),
     playerAnswer: [],
+    usedNumbers: [],
     buttonState: ""
   };
 
@@ -31,21 +32,22 @@ class App extends Component {
     }));
 
   advanceRound = () => {
-    if (this.state.playerAnswer.length === 0) return;
     if (this.state.buttonState === "correct") {
       this.setState(pState => ({
         stars: range(0, getRandomNumber()),
-        playerAnswer: [],
         buttonState: ""
       }));
       return;
     }
+    if (this.state.playerAnswer.length === 0) return;
     if (
       this.state.stars.length ===
       this.state.playerAnswer.reduce((x, y) => x + y, 0)
     ) {
       this.setState(pState => ({
-        buttonState: "correct"
+        buttonState: "correct",
+        playerAnswer: [],
+        usedNumbers: this.state.usedNumbers.concat(this.state.playerAnswer)
       }));
     } else {
       this.setState(pState => ({
@@ -84,6 +86,7 @@ class App extends Component {
           <div className="col-md-12 shadow-lg rounded d-flex p-2 align-items-center justify-content-center">
             <NumberPool
               numberPool={this.state.numberPool}
+              usedNumbers={this.state.usedNumbers}
               onClick={this.selectNumber}
             />
           </div>

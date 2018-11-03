@@ -27,6 +27,20 @@ span {
   box-shadow: 0 0.2rem 0.8rem rgba(105, 105, 105, 0.53);
 }
 
+.selected {
+  background-color: #dc3545;
+  color: #fff;
+  cursor: not-allowed;
+  box-shadow: 0 0.5rem 1rem rgba(240, 4, 4, 0.37);
+}
+
+.selected:hover {
+  background-color: #dc3545;
+  box-shadow: 0 0.5rem 1rem rgba(240, 4, 4, 0.37);
+  border-color: none;
+  transform: translate(0, 0);
+}
+
 span:hover {
   background-color: rgb(200, 200, 200);
   box-shadow: 0 0.5rem 1.2rem rgba(85, 79, 79, 0.53);
