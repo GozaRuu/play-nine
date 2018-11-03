@@ -13,7 +13,8 @@ class App extends Component {
   state = {
     stars: range(0, getRandomNumber()),
     numberPool: range(1, 10),
-    playerAnswer: []
+    playerAnswer: [],
+    buttonState: "default"
   };
 
   selectNumber = number => {
@@ -30,9 +31,21 @@ class App extends Component {
       )
     }));
 
-  veryfiyAnswer = () =>
-    this.state.stars.length ===
-    this.state.playerAnswer.reduce((x, y) => x + y, 0);
+  veryfiyAnswer = () => {
+    if (this.state.playerAnswer === []) return;
+    if (
+      this.state.stars.length ===
+      this.state.playerAnswer.reduce((x, y) => x + y, 0)
+    ) {
+      this.setState(pState => ({
+        buttonState: "correct"
+      }));
+    } else {
+      this.setState(pState => ({
+        buttonState: "mistake"
+      }));
+    }
+  };
 
   render() {
     return (
@@ -47,7 +60,10 @@ class App extends Component {
             <Stars stars={this.state.stars} />
           </div>
           <div className="col-md-4 my-4 p-2 ">
-            <PlayerLockAnswer onClick={this.veryfiyAnswer} />
+            <PlayerLockAnswer
+              onClick={this.veryfiyAnswer}
+              state={this.state.buttonState}
+            />
           </div>
           <div className="col-md-4 shadow-lg rounded d-flex p-2 align-items-center justify-content-center">
             <PlayerAnswer
