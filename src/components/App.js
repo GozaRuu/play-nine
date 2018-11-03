@@ -30,6 +30,10 @@ class App extends Component {
       )
     }));
 
+  veryfiyAnswer = () =>
+    this.state.stars.length ===
+    this.state.playerAnswer.reduce((x, y) => x + y, 0);
+
   render() {
     return (
       <div className="container">
@@ -43,7 +47,7 @@ class App extends Component {
             <Stars stars={this.state.stars} />
           </div>
           <div className="col-md-4 my-4 p-2 ">
-            <PlayerLockAnswer />
+            <PlayerLockAnswer onClick={this.veryfiyAnswer} />
           </div>
           <div className="col-md-4 shadow-lg rounded d-flex p-2 align-items-center justify-content-center">
             <PlayerAnswer
