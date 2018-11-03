@@ -1,9 +1,11 @@
 import React from "react";
 
-const PlayerAnswer = ({ playerAnswer }) => (
+const PlayerAnswer = ({ playerAnswer, onClick }) => (
   <div>
     {playerAnswer.map(number => (
-      <span key={number}>{number}</span>
+      <span key={number} onClick={() => onClick(number)}>
+        {number}
+      </span>
     ))}
   </div>
 );

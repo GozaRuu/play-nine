@@ -16,9 +16,16 @@ class App extends Component {
     playerAnswer: []
   };
 
-  selectNumberFromPool = number =>
+  selectNumber = number =>
     this.setState(pState => ({
       playerAnswer: pState.playerAnswer.concat(number)
+    }));
+
+  unselectNumber = number =>
+    this.setState(pState => ({
+      playerAnswer: pState.playerAnswer.filter(
+        selected => (selected == number ? null : selected)
+      )
     }));
 
   render() {
@@ -37,14 +44,17 @@ class App extends Component {
             <PlayerLockAnswer />
           </div>
           <div className="col-md-4 shadow-lg rounded d-flex p-2 align-items-center justify-content-center">
-            <PlayerAnswer playerAnswer={this.state.playerAnswer} />
+            <PlayerAnswer
+              playerAnswer={this.state.playerAnswer}
+              onClick={this.unselectNumber}
+            />
           </div>
         </div>
         <div className="row text-center">
           <div className="col-md-12 shadow-lg rounded d-flex p-2 align-items-center justify-content-center">
             <NumberPool
               numberPool={this.state.numberPool}
-              onClick={this.selectNumberFromPool}
+              onClick={this.selectNumber}
             />
           </div>
         </div>
