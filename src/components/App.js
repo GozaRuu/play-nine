@@ -14,7 +14,7 @@ class App extends Component {
     stars: range(0, getRandomNumber()),
     numberPool: range(1, 10),
     playerAnswer: [],
-    buttonState: "default"
+    buttonState: ""
   };
 
   selectNumber = number => {
@@ -32,7 +32,7 @@ class App extends Component {
     }));
 
   veryfiyAnswer = () => {
-    if (this.state.playerAnswer === []) return;
+    if (this.state.playerAnswer.length === 0) return;
     if (
       this.state.stars.length ===
       this.state.playerAnswer.reduce((x, y) => x + y, 0)
@@ -50,16 +50,17 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <div className="row text-left text-danger text-uppercase">
+        <div className="row text-center text-danger">
           <div className="col-md-12 rounded align-middle">
-            <h2>Play Nine</h2>
+            <h2 className="game-title game-title-small">play</h2>
+            <h2 className="game-title">nine</h2>
           </div>
         </div>
         <div className="row text-center">
           <div className="col-md-4 shadow-lg rounded  p-2 d-flex align-items-center justify-content-center">
             <Stars stars={this.state.stars} />
           </div>
-          <div className="col-md-4 my-4 p-2 ">
+          <div className="col-md-4 my-4 d-flex p-2 align-items-center justify-content-center">
             <PlayerLockAnswer
               onClick={this.veryfiyAnswer}
               state={this.state.buttonState}

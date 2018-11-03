@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBicycle,
   faGrinStars,
-  faGrimace
+  faAngry
 } from "@fortawesome/free-solid-svg-icons";
 
 const ButtonState = state => {
@@ -11,7 +11,7 @@ const ButtonState = state => {
     case "correct":
       return <FontAwesomeIcon icon={faGrinStars} size="lg" />;
     case "mistake":
-      return <FontAwesomeIcon icon={faGrimace} size="lg" />;
+      return <FontAwesomeIcon icon={faAngry} size="lg" />;
     default:
       return <FontAwesomeIcon icon={faBicycle} size="lg" />;
   }
