@@ -7,11 +7,13 @@ import NumberPool from "./NumberPool";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../style/style.css";
 
+const getRandomNumber = () => Math.floor(Math.random() * 9) + 1;
+
 class App extends Component {
   state = {
-    stars: range(0, 10),
+    stars: range(0, getRandomNumber()),
     numberPool: range(0, 10),
-    playerAnswer: range(0, 8)
+    playerAnswer: []
   };
   render() {
     return (
@@ -25,7 +27,6 @@ class App extends Component {
           <div className="col-md-4 shadow-lg rounded  p-2 d-flex align-items-center justify-content-center">
             <Stars stars={this.state.stars} />
           </div>
-
           <div className="col-md-4 my-4 p-2 ">
             <PlayerLockAnswer />
           </div>
