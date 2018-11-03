@@ -33,6 +33,14 @@ class App extends Component {
 
   veryfiyAnswer = () => {
     if (this.state.playerAnswer.length === 0) return;
+    if (this.state.buttonState) {
+      this.setState(pState => ({
+        stars: range(0, getRandomNumber()),
+        playerAnswer: [],
+        buttonState: ""
+      }));
+      return;
+    }
     if (
       this.state.stars.length ===
       this.state.playerAnswer.reduce((x, y) => x + y, 0)

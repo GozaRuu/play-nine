@@ -2,14 +2,14 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBicycle,
-  faGrinStars,
+  faLaughBeam,
   faAngry
 } from "@fortawesome/free-solid-svg-icons";
 
 const ButtonState = state => {
   switch (state) {
     case "correct":
-      return <FontAwesomeIcon icon={faGrinStars} size="lg" />;
+      return <FontAwesomeIcon icon={faLaughBeam} size="lg" />;
     case "mistake":
       return <FontAwesomeIcon icon={faAngry} size="lg" />;
     default:
