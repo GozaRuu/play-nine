@@ -14,6 +14,7 @@
     "url": "https://github.com/GozaRuu/play-nine/issues"
   },
   "dependencies": {
+    "lodash.range": "^3.2.0",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-scripts": "2.1.1"
