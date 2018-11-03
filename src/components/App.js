@@ -12,19 +12,21 @@ const getRandomNumber = () => Math.floor(Math.random() * 9) + 1;
 class App extends Component {
   state = {
     stars: range(0, getRandomNumber()),
-    numberPool: range(0, 10),
+    numberPool: range(1, 10),
     playerAnswer: []
   };
 
-  selectNumber = number =>
+  selectNumber = number => {
+    if (this.state.playerAnswer.indexOf(number) !== -1) return;
     this.setState(pState => ({
       playerAnswer: pState.playerAnswer.concat(number)
     }));
+  };
 
   unselectNumber = number =>
     this.setState(pState => ({
       playerAnswer: pState.playerAnswer.filter(
-        selected => (selected == number ? null : selected)
+        selected => (selected === number ? null : selected)
       )
     }));
 
