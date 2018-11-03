@@ -19,9 +19,11 @@ const ButtonState = state => {
 
 const PlayerLockAnswer = ({ onClick, state }) => {
   return (
-    <button className="btn player-btn" onClick={onClick}>
-      {ButtonState(state)}
-    </button>
+    <div className="col-md-4 my-4 d-flex p-2 align-items-center justify-content-center">
+      <button className="btn player-btn" onClick={onClick}>
+        {ButtonState(state)}
+      </button>
+    </div>
   );
 };
 

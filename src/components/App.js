@@ -71,29 +71,32 @@ class App extends Component {
           </div>
         </div>
         <div className="row text-center">
-          <div className="col-md-4 shadow-lg rounded  p-2 d-flex align-items-center justify-content-center">
-            <Stars stars={this.state.stars} />
-          </div>
-          <div className="col-md-4 my-4 d-flex p-2 align-items-center justify-content-center">
-            <PlayerLockAnswer
-              onClick={this.advanceRound}
-              state={this.state.buttonState}
-            />
-          </div>
-          <div className="col-md-4 shadow-lg rounded d-flex p-2 align-items-center justify-content-center">
-            <PlayerAnswer
-              playerAnswer={this.state.playerAnswer}
-              onClick={this.unselectNumber}
-            />
-          </div>
+          <Stars stars={this.state.stars} />
+          <PlayerLockAnswer
+            onClick={this.advanceRound}
+            state={this.state.buttonState}
+          />
+          <PlayerAnswer
+            playerAnswer={this.state.playerAnswer}
+            onClick={this.unselectNumber}
+          />
         </div>
         <div className="row text-center">
-          <div className="col-md-12 shadow-lg rounded d-flex p-2 align-items-center justify-content-center">
-            <NumberPool
-              numberPool={this.state.numberPool}
-              usedNumbers={this.state.usedNumbers}
-              onClick={this.selectNumber}
-            />
+          <NumberPool
+            numberPool={this.state.numberPool}
+            usedNumbers={this.state.usedNumbers}
+            onClick={this.selectNumber}
+          />
+        </div>
+        <div className="row text-center text-danger">
+          <div className="col-md-12 rounded align-middle">
+            <h2 className="game-title game-title-small">
+              thank you for playing
+            </h2>
+            <p className="small text-dark footer">
+              © <a href="https://github.com/GozaRuu">GozaRuu.</a> 2018 All
+              rights reserved.
+            </p>
           </div>
         </div>
       </div>
