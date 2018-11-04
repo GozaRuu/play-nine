@@ -3,6 +3,7 @@ import range from "lodash.range";
 import Stars from "./Stars";
 import PlayerAnswerPool from "./PlayerAnswerPool";
 import PlayerInterface from "./PlayerInterface";
+import GameOverModal from "./GameOverModal";
 import NumberPool from "./NumberPool";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../style/style.css";
@@ -32,7 +33,12 @@ class App extends Component {
       )
     }));
 
+  endGame = () => {};
+
   decrementReapints = () => {
+    if (this.state.repaints === 1) {
+      return this.endGame();
+    }
     this.setState(pState => ({
       repaints: pState.repaints - 1
     }));
@@ -78,44 +84,49 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="row text-center text-danger">
-          <div className="col-md-12 rounded align-middle">
-            <h2 className="game-title game-title-small">play</h2>
-            <h2 className="game-title">nine</h2>
+      <React.Fragment>
+        <div className="container">
+          <div className="row text-center text-danger">
+            <div className="col-md-12 rounded align-middle">
+              <h2 className="game-title game-title-small">play</h2>
+              <h2 className="game-title">nine</h2>
+            </div>
+          </div>
+          <div className="row text-center">
+            <Stars stars={this.state.stars} />
+            <PlayerInterface
+              onClick={this.advanceRound}
+              repaints={this.state.repaints}
+              decrementReapints={this.decrementReapints}
+              state={this.state.buttonState}
+            />
+            <PlayerAnswerPool
+              playerAnswer={this.state.playerAnswer}
+              onClick={this.unselectNumber}
+            />
+          </div>
+          <div className="row text-center">
+            <NumberPool
+              numberPool={this.state.numberPool}
+              usedNumbers={this.state.usedNumbers}
+              onClick={this.selectNumber}
+            />
+          </div>
+          <div className="row text-center text-danger">
+            <div className="col-md-12 rounded align-middle">
+              <h2 className="game-title game-title-small">
+                thank you for playing
+              </h2>
+              <p className="small text-dark">
+                © Js Joe. Kais Sghari. 2018 All rights reserved.
+              </p>
+            </div>
           </div>
         </div>
-        <div className="row text-center">
-          <Stars stars={this.state.stars} />
-          <PlayerInterface
-            onClick={this.advanceRound}
-            repaints={this.state.repaints}
-            decrementReapints={this.decrementReapints}
-            state={this.state.buttonState}
-          />
-          <PlayerAnswerPool
-            playerAnswer={this.state.playerAnswer}
-            onClick={this.unselectNumber}
-          />
+        <div className="game-over-modal">
+          <GameOverModal />
         </div>
-        <div className="row text-center">
-          <NumberPool
-            numberPool={this.state.numberPool}
-            usedNumbers={this.state.usedNumbers}
-            onClick={this.selectNumber}
-          />
-        </div>
-        <div className="row text-center text-danger">
-          <div className="col-md-12 rounded align-middle">
-            <h2 className="game-title game-title-small">
-              thank you for playing
-            </h2>
-            <p className="small text-dark">
-              © Js Joe. Kais Sghari. 2018 All rights reserved.
-            </p>
-          </div>
-        </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
