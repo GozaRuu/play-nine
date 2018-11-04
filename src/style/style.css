@@ -13,6 +13,32 @@
   font-size: 16px;
 }
 
+@media only screen and (max-width: 420px) {
+  .game-title {
+    background-color: lightblue;
+    font-size: 48px;
+  }
+  .game-title-small {
+    font-size: 16px;
+  }
+  .small {
+    font-size: 10px;
+  }
+}
+
+@media only screen and (max-width: 340px) {
+  .game-title {
+    background-color: lightblue;
+    font-size: 36px;
+  }
+  .game-title-small {
+    font-size: 16px;
+  }
+  .small {
+    font-size: 10px;
+  }
+}
+
 span {
   background-color: rgb(213, 213, 213);
   display: inline-block;
