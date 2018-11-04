@@ -122,6 +122,7 @@ span:hover {
   background-color: #938d8d;
   border-color: #918787;
   transform: translate(0, -4px);
+  z-index: 3;
   box-shadow: 0 1rem 1.8rem rgba(136, 136, 136, 0.47);
 }
 .repaint-btn:focus {

@@ -20,6 +20,17 @@ class App extends Component {
     isModalOpen: false
   };
 
+  restartGame = () => {
+    this.setState(pState => ({
+      stars: range(0, getRandomNumber()),
+      playerAnswer: [],
+      usedNumbers: [],
+      buttonState: "",
+      repaints: 5,
+      isModalOpen: false
+    }));
+  };
+
   selectNumber = number => {
     if (this.state.playerAnswer.indexOf(number) !== -1) return;
     this.setState(pState => ({
@@ -143,7 +154,7 @@ class App extends Component {
           <div>
             <GameOverModal
               closeModal={this.closeModal}
-              restartGame={() => {}}
+              restartGame={this.restartGame}
             />
           </div>
         ) : (
