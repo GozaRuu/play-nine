@@ -16,7 +16,8 @@ class App extends Component {
     playerAnswer: [],
     usedNumbers: [],
     buttonState: "",
-    repaints: 5
+    repaints: 5,
+    isModalOpen: true
   };
 
   selectNumber = number => {
@@ -33,7 +34,10 @@ class App extends Component {
       )
     }));
 
-  endGame = () => {};
+  closeModal = () =>
+    this.setState(pState => ({
+      isModalOpen: false
+    }));
 
   decrementReapints = () => {
     if (this.state.repaints === 1) {
@@ -70,6 +74,18 @@ class App extends Component {
       this.state.stars.length ===
       this.state.playerAnswer.reduce((x, y) => x + y, 0)
     ) {
+      if (
+        this.state.usedNumbers.length + this.state.playerAnswer.length ===
+        9
+      ) {
+        this.setState(pState => ({
+          isModalOpen: true,
+          buttonState: "",
+          playerAnswer: [],
+          usedNumbers: this.state.usedNumbers.concat(this.state.playerAnswer)
+        }));
+        return;
+      }
       this.setState(pState => ({
         buttonState: "correct",
         playerAnswer: [],
@@ -123,9 +139,16 @@ class App extends Component {
             </div>
           </div>
         </div>
-        <div className="game-over-modal">
-          <GameOverModal />
-        </div>
+        {this.state.isModalOpen ? (
+          <div>
+            <GameOverModal
+              closeModal={this.closeModal}
+              restartGame={() => {}}
+            />
+          </div>
+        ) : (
+          <div />
+        )}
       </React.Fragment>
     );
   }
