@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import range from "lodash.range";
 import Stars from "./Stars";
-import PlayerAnswer from "./PlayerAnswer";
+import PlayerAnswerPool from "./PlayerAnswerPool";
 import PlayerLockAnswer from "./PlayerLockAnswer";
 import NumberPool from "./NumberPool";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -86,7 +86,7 @@ class App extends Component {
             repaints={this.state.repaints}
             state={this.state.buttonState}
           />
-          <PlayerAnswer
+          <PlayerAnswerPool
             playerAnswer={this.state.playerAnswer}
             onClick={this.unselectNumber}
           />
