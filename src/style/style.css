@@ -88,7 +88,7 @@ span:hover {
   border-color: #dc3545;
   transition: all 0.2s;
   box-shadow: 0 0.5rem 1rem rgba(201, 16, 16, 0.37);
-  margin-bottom: -15px;
+  margin-bottom: -18px;
 }
 .player-btn:hover {
   color: #fff;
@@ -119,15 +119,15 @@ span:hover {
 }
 .repaint-btn:hover {
   color: #fff;
-  background-color: #6f6e6e;
-  border-color: #6f6e6e;
+  background-color: #938d8d;
+  border-color: #918787;
   transform: translate(0, -4px);
-  box-shadow: 0 1rem 1.8rem rgba(108, 108, 108, 0.57);
+  box-shadow: 0 1rem 1.8rem rgba(136, 136, 136, 0.47);
 }
 .repaint-btn:focus {
   background-color: rgb(179, 179, 179);
   border-color: rgb(175, 175, 175);
-  box-shadow: 0 0.5rem 1rem rgba(201, 16, 16, 0.37);
+  box-shadow: 0 0.5rem 1rem rgba(108, 108, 108, 0.37);
 }
 .repaint-btn:active {
   color: #fff;

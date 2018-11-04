@@ -14,7 +14,8 @@ class App extends Component {
     stars: range(0, getRandomNumber()),
     playerAnswer: [],
     usedNumbers: [],
-    buttonState: ""
+    buttonState: "",
+    repaints: 5
   };
 
   selectNumber = number => {
@@ -82,6 +83,7 @@ class App extends Component {
           <Stars stars={this.state.stars} />
           <PlayerLockAnswer
             onClick={this.advanceRound}
+            repaints={this.state.repaints}
             state={this.state.buttonState}
           />
           <PlayerAnswer
@@ -102,7 +104,6 @@ class App extends Component {
               thank you for playing
             </h2>
             <p className="small text-dark">
-              {" "}
               © Js Joe. Kais Sghari. 2018 All rights reserved.
             </p>
           </div>

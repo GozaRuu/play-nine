@@ -18,7 +18,7 @@ const ButtonState = state => {
   }
 };
 
-const PlayerLockAnswer = ({ onClick, state }) => {
+const PlayerLockAnswer = ({ onClick, state, repaints }) => {
   return (
     <div className="col-md-4 my-4 d-flex p-2 align-items-center flex-column justify-content-center">
       <button className="btn player-btn" onClick={onClick}>
@@ -26,7 +26,7 @@ const PlayerLockAnswer = ({ onClick, state }) => {
       </button>
       <hr />
       <button className="btn repaint-btn">
-        <FontAwesomeIcon icon={faGlasses} /> 5
+        <FontAwesomeIcon icon={faGlasses} /> {repaints}
       </button>
     </div>
   );
