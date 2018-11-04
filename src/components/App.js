@@ -32,6 +32,12 @@ class App extends Component {
       )
     }));
 
+  decrementReapints = () => {
+    this.setState(pState => ({
+      repaints: pState.repaints - 1
+    }));
+  };
+
   advanceRound = () => {
     if (this.state.buttonState === "correct") {
       this.setState(pState => ({
@@ -84,6 +90,7 @@ class App extends Component {
           <PlayerLockAnswer
             onClick={this.advanceRound}
             repaints={this.state.repaints}
+            decrementReapints={this.decrementReapints}
             state={this.state.buttonState}
           />
           <PlayerAnswerPool
