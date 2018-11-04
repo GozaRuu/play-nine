@@ -139,13 +139,14 @@ class App extends Component {
               onClick={this.selectNumber}
             />
           </div>
-          <div className="row text-center text-danger">
+          <div className="row text-center text-danger footer">
             <div className="col-md-12 rounded align-middle">
               <h2 className="game-title game-title-small">
                 thank you for playing
               </h2>
               <p className="small text-dark">
-                © Js Joe. Kais Sghari. 2018 All rights reserved.
+                © <a href="https://github.com/GozaRuu">GozaRuu</a>. 2018 All
+                rights reserved.
               </p>
             </div>
           </div>
