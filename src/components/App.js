@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import range from "lodash.range";
 import Stars from "./Stars";
 import PlayerAnswerPool from "./PlayerAnswerPool";
-import PlayerLockAnswer from "./PlayerLockAnswer";
+import PlayerInterface from "./PlayerInterface";
 import NumberPool from "./NumberPool";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../style/style.css";
@@ -87,7 +87,7 @@ class App extends Component {
         </div>
         <div className="row text-center">
           <Stars stars={this.state.stars} />
-          <PlayerLockAnswer
+          <PlayerInterface
             onClick={this.advanceRound}
             repaints={this.state.repaints}
             decrementReapints={this.decrementReapints}

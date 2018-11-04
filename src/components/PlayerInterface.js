@@ -18,7 +18,7 @@ const ButtonState = state => {
   }
 };
 
-const PlayerLockAnswer = ({ onClick, state, repaints, decrementReapints }) => {
+const PlayerInterface = ({ onClick, state, repaints, decrementReapints }) => {
   return (
     <div className="col-md-4 my-4 d-flex p-2 align-items-center flex-column justify-content-center">
       <button className="btn player-btn" onClick={onClick}>
@@ -32,4 +32,4 @@ const PlayerLockAnswer = ({ onClick, state, repaints, decrementReapints }) => {
   );
 };
 
-export default PlayerLockAnswer;
+export default PlayerInterface;
