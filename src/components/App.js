@@ -45,6 +45,14 @@ class App extends Component {
       }));
       return;
     }
+    if (this.state.buttonState === "mistake") {
+      this.setState(pState => ({
+        stars: range(0, getRandomNumber()),
+        buttonState: "",
+        playerAnswer: []
+      }));
+      return;
+    }
     if (
       this.state.stars.length ===
       this.state.playerAnswer.reduce((x, y) => x + y, 0)
