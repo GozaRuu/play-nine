@@ -1,10 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMotorcycle,
-  faBomb,
-  faGlobeAfrica
-} from "@fortawesome/free-solid-svg-icons";
+import { faMotorcycle } from "@fortawesome/free-solid-svg-icons";
 
 const GameOverModal = ({ closeModal, restartGame }) => (
   <div className="game-over-modal">

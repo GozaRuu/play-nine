@@ -17,7 +17,7 @@ class App extends Component {
     usedNumbers: [],
     buttonState: "",
     repaints: 5,
-    isModalOpen: true
+    isModalOpen: false
   };
 
   selectNumber = number => {
