@@ -156,30 +156,41 @@ span:hover {
 }
 
 .game-over-modal-content {
+  position: relative;
   text-align: center;
   background-color: #eeeeee;
   margin: 25% auto;
-  padding: 50px;
+  padding: 40px;
   width: 60%;
 }
 
-.game-over-modal-title {
+.game-over-modal-title-level1 {
+  font-size: 22px;
   font-family: pac;
-  font-size: 36px;
-  text-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.28);
+  color: #2f3030;
+}
+
+.game-over-modal-title-level2 {
+  font-family: pac;
+  font-size: 68px;
+  color: #343a40;
+  text-shadow: 0 0.2rem 0.8rem rgba(105, 105, 105, 0.73);
 }
 
 .game-over-modal-close {
-  z-index: 2;
+  background-color: #343a40;
+  color: #fff;
+  line-height: 1.6;
   position: absolute;
-  bottom: 20px;
-  right: 0px;
+  top: 10px;
+  right: 10px;
   font-weight: bold;
 }
 
 .game-over-modal-close:hover,
 .game-over-modal-close:focus {
-  color: black;
+  background-color: #505050;
+  color: #fff;
   text-decoration: none;
   cursor: pointer;
 }

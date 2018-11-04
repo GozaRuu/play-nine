@@ -1,14 +1,19 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGlobeAfrica } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMotorcycle,
+  faBomb,
+  faGlobeAfrica
+} from "@fortawesome/free-solid-svg-icons";
 
 const GameOverModal = ({ state }) => (
   <div className="game-over-modal-content shadow">
     <span class="game-over-modal-close">&times;</span>
-    <h2 className="game-over-modal-title text-secondary">game Over</h2>
+    <h2 className="game-over-modal-title-level1">game</h2>
+    <h2 className="game-over-modal-title-level2">over</h2>
     <hr />
     <button className="btn player-btn font-weight-bold">
-      <FontAwesomeIcon icon={faGlobeAfrica} size="lg" /> Let's Go Again
+      <FontAwesomeIcon icon={faMotorcycle} size="3x" />
     </button>
   </div>
 );
