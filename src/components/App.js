@@ -42,15 +42,6 @@ class App extends Component {
       isModalOpen: false
     }));
 
-  decrementReapints = () => {
-    if (this.state.repaints === 1) {
-      return this.endGame();
-    }
-    this.setState(pState => ({
-      repaints: pState.repaints - 1
-    }));
-  };
-
   endGame = () => {
     this.setState(pState => ({
       isModalOpen: true,
@@ -93,6 +84,18 @@ class App extends Component {
     }
   };
 
+  refreshGame = () => {
+    if (this.state.repaints === 1) {
+      return this.endGame();
+    }
+    this.setState(pState => ({
+      stars: range(0, getRandomNumber()),
+      buttonState: "default",
+      playerAnswer: [],
+      repaints: pState.repaints - 1
+    }));
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -108,7 +111,7 @@ class App extends Component {
             <PlayerInterface
               onClick={this.advanceRound}
               repaints={this.state.repaints}
-              decrementReapints={this.decrementReapints}
+              refreshGame={this.refreshGame}
               state={this.state.buttonState}
             />
             <PlayerAnswerPool
