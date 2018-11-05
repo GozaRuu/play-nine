@@ -21,7 +21,9 @@ const getInitialState = () => ({
 class App extends Component {
   state = getInitialState();
 
-  restartGame = () => getInitialState();
+  restartGame = () => {
+    this.setState(() => getInitialState());
+  };
 
   selectNumber = number => {
     if (this.state.playerAnswer.indexOf(number) !== -1) return;
