@@ -2,11 +2,11 @@
 
 This is an implementation of the Nine game with react, and a custom CSS on top of Bootstrap's Grid.
 
-#Try
+# Try
 
 Try Play Nine here:
 
-#Development
+# Development
 
 This project was scaffold with Create-React-App: after installing, this is a quick list of what you can do with the already established scripts.
 
