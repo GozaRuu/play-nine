@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "author": "Kais Sghari",
   "description": "Nine game web implementation with React",
-  "homepage": "https://github.com/GozaRuu/play-nine#readme",
+  "homepage": "https://gozaruu.github.io/play-nine/",
   "main": "index.js",
   "repository": {
     "type": "git",

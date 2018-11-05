@@ -4,7 +4,7 @@ This is an implementation of the Nine game with react, and a custom CSS on top o
 
 # Try
 
-Try Play Nine here:
+Try Play Nine here: https://gozaruu.github.io/play-nine/
 
 # Development
 
