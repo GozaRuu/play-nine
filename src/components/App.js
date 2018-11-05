@@ -9,27 +9,19 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../style/style.css";
 
 const getRandomNumber = () => Math.floor(Math.random() * 9) + 1;
+const getInitialState = () => ({
+  stars: range(0, getRandomNumber()),
+  playerAnswer: [],
+  usedNumbers: [],
+  buttonState: "default",
+  repaints: 5,
+  isModalOpen: false
+});
 
 class App extends Component {
-  state = {
-    stars: range(0, getRandomNumber()),
-    playerAnswer: [],
-    usedNumbers: [],
-    buttonState: "",
-    repaints: 5,
-    isModalOpen: false
-  };
+  state = getInitialState();
 
-  restartGame = () => {
-    this.setState(pState => ({
-      stars: range(0, getRandomNumber()),
-      playerAnswer: [],
-      usedNumbers: [],
-      buttonState: "",
-      repaints: 5,
-      isModalOpen: false
-    }));
-  };
+  restartGame = () => getInitialState();
 
   selectNumber = number => {
     if (this.state.playerAnswer.indexOf(number) !== -1) return;
@@ -59,53 +51,45 @@ class App extends Component {
     }));
   };
 
-  advanceRound = () => {
-    if (this.state.buttonState === "correct") {
-      this.setState(pState => ({
-        stars: range(0, getRandomNumber()),
-        buttonState: ""
-      }));
-      return;
-    }
-    if (this.state.playerAnswer.length === 0) {
-      this.setState(pState => ({
-        stars: range(0, getRandomNumber())
-      }));
-      return;
-    }
-    if (this.state.buttonState === "mistake") {
-      this.setState(pState => ({
-        stars: range(0, getRandomNumber()),
-        buttonState: "",
-        playerAnswer: []
-      }));
-      return;
-    }
+  endGame = () => {
+    this.setState(pState => ({
+      isModalOpen: true,
+      buttonState: "default",
+      playerAnswer: [],
+      usedNumbers: this.state.usedNumbers.concat(this.state.playerAnswer)
+    }));
+  };
+
+  handleRound = () => {
     if (
       this.state.stars.length ===
       this.state.playerAnswer.reduce((x, y) => x + y, 0)
     ) {
-      if (
-        this.state.usedNumbers.length + this.state.playerAnswer.length ===
-        9
-      ) {
-        this.setState(pState => ({
-          isModalOpen: true,
-          buttonState: "",
-          playerAnswer: [],
-          usedNumbers: this.state.usedNumbers.concat(this.state.playerAnswer)
-        }));
-        return;
-      }
+      if (this.state.usedNumbers.length + this.state.playerAnswer.length === 9)
+        return this.endGame();
       this.setState(pState => ({
         buttonState: "correct",
         playerAnswer: [],
         usedNumbers: this.state.usedNumbers.concat(this.state.playerAnswer)
       }));
-    } else {
+    } else if (this.state.playerAnswer.length !== 0) {
       this.setState(pState => ({
         buttonState: "mistake"
       }));
+    }
+  };
+
+  advanceRound = () => {
+    switch (this.state.buttonState) {
+      case "correct":
+        return this.setState(pState => ({
+          stars: range(0, getRandomNumber()),
+          buttonState: "default"
+        }));
+      case "default":
+        return this.handleRound();
+      default:
+        return;
     }
   };
 
