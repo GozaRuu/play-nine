@@ -18,14 +18,14 @@ const ButtonState = state => {
   }
 };
 
-const PlayerInterface = ({ onClick, state, repaints, refreshGame }) => {
+const PlayerInterface = ({ onClick, state, repaints, repaintRound }) => {
   return (
     <div className="col-md-4 my-4 d-flex p-2 align-items-center flex-column justify-content-center">
       <button className="btn player-btn" onClick={onClick}>
         {ButtonState(state)}
       </button>
       <hr />
-      <button className="btn repaint-btn" onClick={refreshGame}>
+      <button className="btn repaint-btn" onClick={repaintRound}>
         <FontAwesomeIcon icon={faGlasses} /> {repaints}
       </button>
     </div>

@@ -15,14 +15,117 @@ const getInitialState = () => ({
   usedNumbers: [],
   buttonState: "default",
   repaints: 5,
-  isModalOpen: false
+  isModalOpen: false,
+  gameOverStatus: false
 });
+
+const possibleCombinationSum = (arr, n) => {
+  if (arr.indexOf(n) >= 0) {
+    return true;
+  }
+  if (arr[0] > n) {
+    return false;
+  }
+  if (arr[arr.length - 1] > n) {
+    arr.pop();
+    return possibleCombinationSum(arr, n);
+  }
+  let listSize = arr.length,
+    combinationsCount = 1 << listSize;
+  for (let i = 1; i < combinationsCount; i++) {
+    let combinationSum = 0;
+    for (let j = 0; j < listSize; j++) {
+      if (i & (1 << j)) {
+        combinationSum += arr[j];
+      }
+    }
+    if (n === combinationSum) {
+      return true;
+    }
+  }
+  return false;
+};
 
 class App extends Component {
   state = getInitialState();
 
   restartGame = () => {
     this.setState(() => getInitialState());
+  };
+
+  updateGameStatus = () => {
+    const possibleNumbers = range(1, 10).filter(
+      number => this.state.usedNumbers.indexOf(number) !== -1
+    );
+
+    if (this.state.usedNumbers.length + this.state.playerAnswer.length === 9)
+      return this.setState(pState => ({
+        isModalOpen: true,
+        buttonState: "default",
+        playerAnswer: [],
+        gameOverStatus: true,
+        usedNumbers: this.state.usedNumbers.concat(this.state.playerAnswer)
+      })); //game won
+    //if no more possible combinations available end the game
+    if (
+      this.state.repaints === 0 &&
+      !possibleCombinationSum(possibleNumbers, this.state.stars)
+    )
+      return this.setState(pState => ({
+        isModalOpen: true,
+        buttonState: "default",
+        playerAnswer: [],
+        gameOverStatus: false,
+        usedNumbers: this.state.usedNumbers.concat(this.state.playerAnswer)
+      }));
+  };
+
+  handleRound = () => {
+    if (
+      this.state.stars.length ===
+      this.state.playerAnswer.reduce((x, y) => x + y, 0)
+    ) {
+      //check if game is over now that the submission is valid
+      this.updateGameStatus();
+      //accept submission if game is not over
+      this.setState(
+        pState => ({
+          buttonState: "correct",
+          playerAnswer: [],
+          usedNumbers: this.state.usedNumbers.concat(this.state.playerAnswer)
+        }),
+        this.updateGameStatus
+      );
+    } else if (this.state.playerAnswer.length !== 0) {
+      this.setState(pState => ({
+        buttonState: "mistake"
+      }));
+    }
+  };
+
+  repaintRound = () => {
+    if (this.state.repaints === 0) return;
+    this.setState(
+      pState => ({
+        stars: range(0, getRandomNumber()),
+        buttonState: "default",
+        playerAnswer: [],
+        repaints: pState.repaints - 1
+      }),
+      this.updateGameStatus
+    );
+  };
+
+  advanceRound = () => {
+    switch (this.state.buttonState) {
+      case "correct":
+        return this.setState(pState => ({
+          stars: range(0, getRandomNumber()),
+          buttonState: "default"
+        }));
+      default:
+        return this.handleRound();
+    }
   };
 
   selectNumber = number => {
@@ -44,60 +147,6 @@ class App extends Component {
       isModalOpen: false
     }));
 
-  endGame = () => {
-    this.setState(pState => ({
-      isModalOpen: true,
-      buttonState: "default",
-      playerAnswer: [],
-      usedNumbers: this.state.usedNumbers.concat(this.state.playerAnswer)
-    }));
-  };
-
-  handleRound = () => {
-    if (
-      this.state.stars.length ===
-      this.state.playerAnswer.reduce((x, y) => x + y, 0)
-    ) {
-      if (this.state.usedNumbers.length + this.state.playerAnswer.length === 9)
-        return this.endGame();
-      this.setState(pState => ({
-        buttonState: "correct",
-        playerAnswer: [],
-        usedNumbers: this.state.usedNumbers.concat(this.state.playerAnswer)
-      }));
-    } else if (this.state.playerAnswer.length !== 0) {
-      this.setState(pState => ({
-        buttonState: "mistake"
-      }));
-    }
-  };
-
-  advanceRound = () => {
-    switch (this.state.buttonState) {
-      case "correct":
-        return this.setState(pState => ({
-          stars: range(0, getRandomNumber()),
-          buttonState: "default"
-        }));
-      case "default":
-        return this.handleRound();
-      default:
-        return;
-    }
-  };
-
-  refreshGame = () => {
-    if (this.state.repaints === 1) {
-      return this.endGame();
-    }
-    this.setState(pState => ({
-      stars: range(0, getRandomNumber()),
-      buttonState: "default",
-      playerAnswer: [],
-      repaints: pState.repaints - 1
-    }));
-  };
-
   render() {
     return (
       <React.Fragment>
@@ -113,7 +162,7 @@ class App extends Component {
             <PlayerInterface
               onClick={this.advanceRound}
               repaints={this.state.repaints}
-              refreshGame={this.refreshGame}
+              repaintRound={this.repaintRound}
               state={this.state.buttonState}
             />
             <PlayerAnswerPool
@@ -145,6 +194,7 @@ class App extends Component {
             <GameOverModal
               closeModal={this.closeModal}
               restartGame={this.restartGame}
+              status={this.state.gameOverStatus}
             />
           </div>
         ) : (
